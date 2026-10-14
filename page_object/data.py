@@ -1,17 +1,18 @@
 import uuid
 from page_object.config import ASSETS_DIR
 
+_SUFFIX = uuid.uuid4().hex[:6]
+
 DATA_REG = {
     'first_name': 'Иван',
     'last_name': 'Иванов',
-    'username': f'Иван{uuid.uuid4().hex[:6]}',
-    'email': f'ivan_{uuid.uuid4().hex[:6]}@yandex.ru',
-    'password': f'Test_password{uuid.uuid4().hex[:6]}'
+    'username': f'Иван{_SUFFIX}',
+    'email': f'ivan_{_SUFFIX}@yandex.ru',
+    'password': f'Test_password{_SUFFIX}'
 }
-
 DATA_AUTH = {
-        'email': 'test14102026',
-        'password': '123456789Po'
+    'email': DATA_REG['username'],
+    'password': DATA_REG['password'],
 }
 
 page_auth = 'Войти на сайт'

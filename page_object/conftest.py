@@ -4,17 +4,10 @@ from page_object.pages.authorization_page import AuthorizationPage
 from page_object.pages.account_creation_page import AccountCreationPage
 from page_object.pages.creating_repo_page import CreatingRepoPage
 from page_object.urls import URL_MAIN_PAGE
-from page_object.data import DATA_AUTH
 from selenium.webdriver import ChromeOptions
 import os
+from page_object.data import DATA_REG
 
-
-
-# @pytest.fixture(scope="function")
-# def driver():
-#     browser = webdriver.Chrome()
-#     yield browser
-#     browser.quit()
 
 @pytest.fixture(scope="function")
 def driver():
@@ -29,12 +22,22 @@ def driver():
     browser.quit()
 
 @pytest.fixture(scope="function")
-def auth_user(authorization_page):
+def auth_user(driver, account_creation_page, authorization_page):
+    account_creation_page.go_to_page(URL_MAIN_PAGE)
+    account_creation_page.click_button_create_account()
+    account_creation_page.set_fields_registration_form(DATA_REG)
+    account_creation_page.click_button_create_account_form()
+
     authorization_page.go_to_page(URL_MAIN_PAGE)
     authorization_page.click_button_recipe()
     authorization_page.click_button_enter()
-    authorization_page.set_fields_auth_form(DATA_AUTH)
+    authorization_page.set_fields_auth_form({
+        'email': DATA_REG['username'],
+        'password': DATA_REG['password'],
+    })
     authorization_page.click_button_enter_form()
+
+    return authorization_page
 
 @pytest.fixture
 def account_creation_page(driver):
