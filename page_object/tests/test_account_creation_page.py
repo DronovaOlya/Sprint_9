@@ -12,7 +12,6 @@ class TestAccountCreationPage:
         account_creation_page.set_fields_registration_form(DATA_REG)
         account_creation_page.click_button_create_account_form()
 
-
         assert page_auth in account_creation_page.get_text_to_element(AuthorizationPageLocators.LOCATOR_PAGE_AUTH)
         check = authorization_page.wait_and_find_element(AuthorizationPageLocators.LOCATOR_FORM_AUTH)
         assert check.is_displayed()
