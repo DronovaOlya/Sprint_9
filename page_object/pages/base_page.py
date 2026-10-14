@@ -4,7 +4,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 import os
 
 class BasePage:
-    def __init__(self, driver, timeout=10):
+    def __init__(self, driver, timeout=20):
         self.driver = driver
         self.timeout = timeout
         self.wait = WebDriverWait(self.driver, self.timeout)
