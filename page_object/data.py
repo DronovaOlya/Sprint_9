@@ -6,7 +6,7 @@ DATA_REG = {
     'last_name': 'Иванов',
     'username': f'Иван{uuid.uuid4().hex[:6]}',
     'email': f'ivan_{uuid.uuid4().hex[:6]}@yandex.ru',
-    'password': f'Ivan{uuid.uuid4().hex[:6]}'
+    'password': f'Test_password{uuid.uuid4().hex[:6]}'
 }
 
 DATA_AUTH = {
