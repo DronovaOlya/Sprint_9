@@ -6,10 +6,15 @@ from page_object.locators.account_creation_page_locators import AccountCreationP
 @allure.epic('Создание рецепта')
 class TestCreatingRepoPage:
     @allure.title('Создание рецепта')
-    def test_create_recipe(self, auth_user, creating_repo_page):
+    def test_create_recipe(self, auth_user, creating_repo_page, account_creation_page):
         creating_repo_page.click_tab_create_repo()
         creating_repo_page.set_fields_recipe_creation_form(DATA_RECIPE, FILE_FOR_UPLOAD)
         creating_repo_page.click_button_create_repo()
+
+        import time
+        time.sleep(2)
+        print("URL после регистрации:", account_creation_page.driver.current_url)
+        print("Title:", account_creation_page.driver.title)
 
         check = creating_repo_page.wait_and_find_element(CreatingRepoPageLocators.LOCATOR_CARD_CREATE_RECIPE)
         assert check.is_displayed()
